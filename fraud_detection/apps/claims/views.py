@@ -10,7 +10,6 @@ class ClaimViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
-        # Implement fraud detection logic before saving
         fraud_service = FraudDetectionService()
         fraud_service.detect_fraud(serializer.validated_data)
         super().perform_create(serializer)
